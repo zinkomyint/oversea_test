@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:borderlessWorking/bloc/auth_bloc/auth.dart';
-import 'package:borderlessWorking/repositories/auth_repositories.dart';
+import 'package:borderlessWorking/data/repositories/auth_repositories.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
