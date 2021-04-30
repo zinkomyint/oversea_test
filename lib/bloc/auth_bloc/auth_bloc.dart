@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:borderlessWorking/data/api/apis.dart';
 import 'package:borderlessWorking/data/repositories/auth_repositories.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
@@ -22,6 +23,7 @@ class AuthenticationBloc
     if (event is AppStarted) {
       final bool hasToken = await authRepository.hasToken();
       if (hasToken) {
+        Apis.token = await authRepository.getToken();
         yield AuthenticationAuthenticated();
       } else {
         yield AuthenticationUnauthenticated();

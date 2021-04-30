@@ -9,7 +9,7 @@ class AuthRepository {
   final FlutterSecureStorage storage = new FlutterSecureStorage();
 
   Future<bool> hasToken() => _apiService.hasToken();
-
+  Future<String> getToken() => _apiService.getToken();
   Future<void> persistToken(String token) => _apiService.persistToken(token);
 
   Future<void> deleteToken() => _apiService.deleteToken();

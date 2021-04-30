@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:borderlessWorking/bloc/auth_bloc/auth.dart';
+import 'package:borderlessWorking/data/api/apis.dart';
 import 'package:borderlessWorking/data/repositories/auth_repositories.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
@@ -32,6 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           event.email,
           event.password,
         );
+        Apis.token = token;
         authenticationBloc.add(LoggedIn(token: token));
         yield LoginInitial();
       } catch (error) {
