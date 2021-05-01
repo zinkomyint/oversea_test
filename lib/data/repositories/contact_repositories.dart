@@ -5,7 +5,8 @@ import 'package:dio/dio.dart';
 
 class ContactRepository {
   final ApiService _apiService = ApiService();
-  Future<ContactModel> getContactList() => _apiService.getContactList();
+
+  Future<List<ContactModel>> getContactList() => _apiService.getContactLists();
 }
 
 class NetworkError extends Error {}

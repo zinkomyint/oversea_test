@@ -11,7 +11,7 @@ class ContactInitial extends ContactState {
 }
 
 class ContactSuccess extends ContactState {
-  final ContactModel contacts;
+  final List<ContactModel> contacts;
 
   const ContactSuccess(this.contacts);
 

@@ -10,21 +10,30 @@ part 'contact_event.dart';
 part 'contact_state.dart';
 
 class ContactBloc extends Bloc<ContactEvent, ContactState> {
-  final AuthRepository authRepository = AuthRepository();
+  final ContactRepository contactRepository = ContactRepository();
+
+  // ContactBloc({@required this.contactRepository}) : super(ContactInitial());
+
   ContactBloc() : super(ContactInitial());
-  final ContactRepository _contactRepository = ContactRepository();
+  // final ContactRepository _contactRepository;
+  // ContactBloc(this._contactRepository);
 
   @override
   Stream<ContactState> mapEventToState(
     ContactEvent event,
   ) async* {
     if (event is GetContactList) {
+      // emit(ContactInitial());
+      // contactRepository
+      //     .getContactList()
+      //     .then((value) => emit(ContactSuccess(value)))
+      //     .catchError((e) => emit(ContactFail(e)));
       try {
         yield ContactInitial();
-        final mList = await _contactRepository.getContactList();
+        final mList = await contactRepository.getContactList();
         yield ContactSuccess(mList);
-        if (mList.error != null) {
-          yield ContactFail(mList.error);
+        if (mList != null) {
+          yield ContactFail('asfasd');
         }
       } on NetworkError {
         yield ContactFail("Failed to fetch data. is your device online?");

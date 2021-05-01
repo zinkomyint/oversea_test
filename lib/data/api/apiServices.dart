@@ -1,3 +1,4 @@
+import 'dart:convert' as convert;
 import 'dart:io';
 
 import 'package:borderlessWorking/data/api/apis.dart';
@@ -6,6 +7,7 @@ import 'package:borderlessWorking/data/model/contact.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'apis.dart';
+import 'package:http/http.dart' as http;
 
 class ApiService {
   static String mainUrl = Apis.mailURL;
@@ -49,13 +51,22 @@ class ApiService {
   }
 
   //getContact
-  Future<ContactModel> getContactList() async {
+  Future<List<ContactModel>> getContactLists() async {
+    List<ContactModel> _contacts;
     try {
       Response response = await _dio.get(contactUrl);
-      return ContactModel.fromJson(response.data);
+      var value = response.data
+          .map((dynamic i) => ContactModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+      return value;
+      // Map<String, dynamic> collection =
+      //     convert.jsonDecode(response.data['contacts']);
+      // List<dynamic> data = collection["contacts"];
+      // return data;
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
-      return ContactModel.withError("Data not found / Connection issue");
+
+      //return ContactModel.withError("Data not found / Connection issue");
     }
   }
 }

@@ -1,13 +1,11 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Apis {
+  static String token = '';
   static const mailURL = "http://192.168.100.27:8000/api/v1";
   static const login = '/auth/login';
   static const contact = '/contact_list';
-  static String token = '';
 }
 
 Dio getDio() {
