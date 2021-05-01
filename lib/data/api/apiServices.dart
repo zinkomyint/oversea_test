@@ -1,13 +1,9 @@
-import 'dart:convert' as convert;
-import 'dart:io';
-
 import 'package:borderlessWorking/data/api/apis.dart';
-import 'package:borderlessWorking/data/api/httpHelper.dart';
 import 'package:borderlessWorking/data/model/contact.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:retrofit/dio.dart';
 import 'apis.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 class ApiService {
   static String mainUrl = Apis.mailURL;
@@ -52,21 +48,21 @@ class ApiService {
 
   //getContact
   Future<List<ContactModel>> getContactLists() async {
-    List<ContactModel> _contacts;
+    List<ContactModel> _dataList = [];
+    Response response = await _dio.get(contactUrl);
+    var body = (response.data);
     try {
-      Response response = await _dio.get(contactUrl);
-      var value = response.data
-          .map((dynamic i) => ContactModel.fromJson(i as Map<String, dynamic>))
-          .toList();
-      return value;
-      // Map<String, dynamic> collection =
-      //     convert.jsonDecode(response.data['contacts']);
-      // List<dynamic> data = collection["contacts"];
-      // return data;
+      if (response.statusCode == 200) {
+        for (var item in body['contacts']) {
+          ContactModel data = new ContactModel.fromJson(item);
+          _dataList.add(data);
+        }
+        return _dataList;
+      }
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
+      //  return ContactModel.withError('asdfasdfasdfasdf');
 
-      //return ContactModel.withError("Data not found / Connection issue");
     }
   }
 }

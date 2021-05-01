@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:dio_flutter_transformer/dio_flutter_transformer.dart';
+import 'package:dio_http_cache/dio_http_cache.dart';
 
 class Apis {
   static String token = '';
@@ -10,10 +12,13 @@ class Apis {
 
 Dio getDio() {
   Dio dio = Dio();
+  dio.transformer = FlutterTransformer();
   dio.options.headers["Demo-Header"] = "Oversea";
   dio.options.headers["content-type"] = "application/json";
   dio.options.headers[HttpHeaders.authorizationHeader] = "Bearer " + Apis.token;
   dio.interceptors
       .addAll([LogInterceptor(requestBody: true, responseBody: true)]);
+  dio.interceptors
+      .add(DioCacheManager(CacheConfig(baseUrl: Apis.mailURL)).interceptor);
   return dio;
 }

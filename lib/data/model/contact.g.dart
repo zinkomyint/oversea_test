@@ -8,8 +8,8 @@ part of 'contact.dart';
 
 ContactModel _$ContactModelFromJson(Map<String, dynamic> json) {
   return ContactModel(
-    name: json['name'] as String,
-    job: json['job'] as String,
+    json['name'] as String,
+    json['job'] as String,
     age: json['age'] as int,
     id: json['id'] as int,
   )..error = json['error'] as String;
@@ -17,9 +17,9 @@ ContactModel _$ContactModelFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ContactModelToJson(ContactModel instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'id': instance.id,
       'name': instance.name,
       'job': instance.job,
       'age': instance.age,
-      'error': instance.error,
     };

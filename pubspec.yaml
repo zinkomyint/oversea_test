@@ -92,8 +92,8 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   assets:
-      - assets/icons/call.svg
-      - assets/icons/gift.svg
-      - assets/icons/payment.svg
+      - assets/icons
+      - assets/images
+      - assets/fonts
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

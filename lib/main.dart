@@ -1,6 +1,7 @@
 import 'package:borderlessWorking/data/api/apiServices.dart';
 import 'package:borderlessWorking/screens/contact/contact_screen.dart';
 import 'package:borderlessWorking/screens/main_screen/main_screen.dart';
+import 'package:borderlessWorking/screens/public/public_home_srceen.dart';
 import 'package:dio_flutter_transformer/dio_flutter_transformer.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     ApiService apiService = ApiService();
     Get.put(apiService);
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       locale: const Locale('mn', 'MN'),
       theme: ThemeData(
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
             return ContactPage();
           }
           if (state is AuthenticationUnauthenticated) {
-            return IntroPage(authRepository: authRepository);
+            // return IntroPage(authRepository: authRepository);
+            return PublicHome(authRepository: authRepository);
           }
           if (state is AuthenticationLoading) {
             return Scaffold(
