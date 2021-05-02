@@ -1,6 +1,7 @@
 import 'package:borderlessWorking/Widget/contact/contact_list_widget.dart';
 import 'package:borderlessWorking/bloc/auth_bloc/auth.dart';
 import 'package:borderlessWorking/bloc/contact_bloc/contact_bloc.dart';
+import 'package:borderlessWorking/data/api/apiServices.dart';
 import 'package:borderlessWorking/data/model/contact.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
@@ -51,6 +52,7 @@ class _ContactPageState extends State<ContactPage> {
   }
 
   Widget _buildList() {
+    ApiService apiService = Get.find();
     return Container(
       // margin: EdgeInsets.all(8.0),
       child: BlocProvider(
@@ -76,12 +78,10 @@ class _ContactPageState extends State<ContactPage> {
                       itemCount: contacts.length,
                       itemBuilder: (context, position) {
                         return item(contacts[position], context);
-                        // return ContactList(contacts[position],context);
                       });
                 }
-                return Center(child: CircularProgressIndicator());
               } else if (state is ContactFail) {
-                return Container();
+                return Center(child: CircularProgressIndicator());
               }
             },
           ),

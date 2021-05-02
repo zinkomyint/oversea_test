@@ -19,11 +19,19 @@ class PublicHome extends StatelessWidget {
           FlatButton(
             textColor: Colors.white,
             onPressed: () {
-              Get.to(LoginScreen(authRepository: authRepository));
+              Get.to(() => LoginScreen(authRepository: authRepository));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (_) =>
+              //             LoginScreen(authRepository: authRepository)));
             },
             child: Text("login"),
           ),
         ],
+      ),
+      body: Center(
+        child: Text('Home Page'),
       ),
     );
   }

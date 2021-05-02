@@ -58,7 +58,7 @@ class _LoginFormState extends State<LoginForm> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "AUTH WITH REST",
+                            "Borderless Working",
                             style: TextStyle(
                                 color: Style.Colors.mainColor,
                                 fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class _LoginFormState extends State<LoginForm> {
                             height: 5.0,
                           ),
                           Text(
-                            "Login app using BLOC pattern and REST API",
+                            "........",
                             style: TextStyle(
                                 fontSize: 10.0, color: Colors.black38),
                           )
@@ -198,81 +198,6 @@ class _LoginFormState extends State<LoginForm> {
                                             color: Colors.white)))),
                       ],
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Or connect using",
-                        style: TextStyle(color: Colors.black26, fontSize: 12.0),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 40.0,
-                        width: 180.0,
-                        child: RaisedButton(
-                            color: Color(0xFF385c8e),
-                            disabledColor: Style.Colors.mainColor,
-                            disabledTextColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            onPressed: _onLoginButtonPressed,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  EvaIcons.facebook,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 5.0,
-                                ),
-                                Text("Facebook",
-                                    style: new TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              ],
-                            )),
-                      ),
-                      Container(
-                        width: 180.0,
-                        height: 40.0,
-                        child: RaisedButton(
-                            color: Color(0xFFf14436),
-                            disabledColor: Style.Colors.mainColor,
-                            disabledTextColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  EvaIcons.google,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 5.0,
-                                ),
-                                Text("Google",
-                                    style: new TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              ],
-                            )),
-                      ),
-                    ],
                   ),
                   SizedBox(
                     height: 40.0,

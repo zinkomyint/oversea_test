@@ -1,6 +1,5 @@
 import 'package:borderlessWorking/data/api/apiServices.dart';
 import 'package:borderlessWorking/screens/contact/contact_screen.dart';
-import 'package:borderlessWorking/screens/main_screen/main_screen.dart';
 import 'package:borderlessWorking/screens/public/public_home_srceen.dart';
 import 'package:dio_flutter_transformer/dio_flutter_transformer.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
@@ -9,12 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/auth_bloc/auth.dart';
 import 'bloc/auth_bloc/auth_bloc.dart';
 import 'data/repositories/auth_repositories.dart';
-import 'screens/auth/intro_screen.dart';
 import 'package:borderlessWorking/style/theme.dart' as Style;
 import 'package:get/get.dart';
 
 void main() {
   final authRepository = AuthRepository();
+
   runApp(
     BlocProvider<AuthenticationBloc>(
       create: (context) {
@@ -52,32 +51,7 @@ class MyApp extends StatelessWidget {
             return PublicHome(authRepository: authRepository);
           }
           if (state is AuthenticationLoading) {
-            return Scaffold(
-              body: Container(
-                color: Colors.white,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 25.0,
-                      width: 25.0,
-                      child: CircularProgressIndicator(
-                        valueColor: new AlwaysStoppedAnimation<Color>(
-                            Style.Colors.mainColor),
-                        strokeWidth: 4.0,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          }
-          return Scaffold(
-            body: Container(
-              color: Colors.white,
-              width: MediaQuery.of(context).size.width,
+            return SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -93,6 +67,23 @@ class MyApp extends StatelessWidget {
                   )
                 ],
               ),
+            );
+          }
+          return SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 25.0,
+                  width: 25.0,
+                  child: CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(
+                        Style.Colors.mainColor),
+                    strokeWidth: 4.0,
+                  ),
+                )
+              ],
             ),
           );
         },
