@@ -77,7 +77,7 @@ class _ContactPageState extends State<ContactPage> {
                   return ListView.builder(
                       itemCount: contacts.length,
                       itemBuilder: (context, position) {
-                        return item(contacts[position], context);
+                      return item(contacts[position], context);
                       });
                 }
               } else if (state is ContactFail) {

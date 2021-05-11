@@ -1,5 +1,7 @@
 import 'package:borderlessWorking/bloc/login_bloc/login_bloc.dart';
 import 'package:borderlessWorking/data/repositories/auth_repositories.dart';
+import 'package:borderlessWorking/screens/countr2.dart';
+import 'package:borderlessWorking/screens/country.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -219,7 +221,10 @@ class _LoginFormState extends State<LoginForm> {
                                 padding: EdgeInsets.only(right: 5.0),
                               ),
                               GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).push
+                                    (MaterialPageRoute(builder: (_)=>Getcountries()));
+                                  },
                                   child: Text(
                                     "Register",
                                     style: TextStyle(

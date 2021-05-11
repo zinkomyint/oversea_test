@@ -1,13 +1,19 @@
 import 'dart:io';
+import 'package:borderlessWorking/screens/countr2.dart';
+import 'package:borderlessWorking/screens/country.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_flutter_transformer/dio_flutter_transformer.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 
 class Apis {
+  // static const tester = '';
   static String token = '';
-  static const mailURL = "http://192.168.100.27:8000/api/v1";
+  static const mailURL = "http://192.168.99.207:8000/api/v1";
   static const login = '/auth/login';
   static const contact = '/contact_list';
+  static const register = '/jobseeker/register/';
+  static const country_list = '/jobseeker/country-list/';
+  static const city_list = '/jobseeker/city-list/{country_list}/';
 }
 
 Dio getDio() {

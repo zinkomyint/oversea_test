@@ -41,6 +41,7 @@ dependencies:
   dio_http_cache:
   cached_network_image:
   get:
+  get_it:
   retrofit: any
   logger: any
   flutter_slidable:
