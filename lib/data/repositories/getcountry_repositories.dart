@@ -6,10 +6,10 @@ import 'package:borderlessWorking/screens/countr2.dart';
 import 'package:dio/dio.dart';
 
 class GetcountryRepository {
-  String cname;
+  String idProvince;
   final ApiService _apiService = ApiService();
   Future<List<Getcountry>> getcountry() => _apiService.getcountry();
-  Future<List<Getcity>> getcity() => _apiService.getcity(cname);
+  Future<List<Getcity>> getcity(idProvince) => _apiService.getcity(idProvince);
 }
 
 class NetworkError extends Error {}

@@ -13,7 +13,7 @@ class Apis {
   static const contact = '/contact_list';
   static const register = '/jobseeker/register/';
   static const country_list = '/jobseeker/country-list/';
-  static const city_list = '/jobseeker/city-list/{country_list}/';
+  static const city_list = '/jobseeker/city-list/';
 }
 
 Dio getDio() {

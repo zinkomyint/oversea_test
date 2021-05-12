@@ -13,7 +13,6 @@ import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:retrofit/dio.dart';
 import 'apis.dart';
 import 'package:dio/dio.dart';
-
 class ApiService {
   static String mainUrl = Apis.mailURL;
   var loginUrl = mainUrl + Apis.login;
@@ -159,10 +158,10 @@ class ApiService {
   }
   //Getcountry
 
-  //citylist 
-   Future<List<Getcity>> getcity(cname) async {
+  //citylist
+   Future<List<Getcity>> getcity(String idProvince) async {
     List<Getcity> _countrylist = [];
-    Response response = await _dio.get(getcityUrl);
+    Response response = await _dio.get(getcityUrl + '$idProvince');
     var body = (response.data);
     try {
       if (response.statusCode == 200) {

@@ -10,7 +10,7 @@ part 'getcountry_event.dart';
 part 'getcountry_state.dart';
 
 class GetcountryBloc extends Bloc<GetcountryEvent, GetcountryState> {
-  String cname;
+  String idProvince;
   final GetcountryRepository _getcountryRepository = GetcountryRepository();
   GetcountryBloc() : super(GetcountryInitial());
 
@@ -22,7 +22,7 @@ class GetcountryBloc extends Bloc<GetcountryEvent, GetcountryState> {
       try {
             yield GetcountryInitial();
             final country = await _getcountryRepository.getcountry();
-            final city = await _getcountryRepository.getcity();
+            final city = await _getcountryRepository.getcity(idProvince);
             yield GetcountrySuccess(country,city);
       }on NetworkError {
           yield GetcountryFail("Failed to fetch data. is your device online?");
