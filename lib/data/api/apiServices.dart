@@ -13,6 +13,7 @@ import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:retrofit/dio.dart';
 import 'apis.dart';
 import 'package:dio/dio.dart';
+
 class ApiService {
   static String mainUrl = Apis.mailURL;
   var loginUrl = mainUrl + Apis.login;
@@ -76,7 +77,7 @@ class ApiService {
 
     }
   }
-   //String name,birthday, furigana,mobile,email,password;
+  //String name,birthday, furigana,mobile,email,password;
   //register
   // Future<Register> register2(String name,String birthday,String furigana,String mobile,String email, String password) async {
   //   Response response = await _dio.post(registerUrl, data: {
@@ -114,39 +115,39 @@ class ApiService {
   //        print("Exception occured: $error stackTrace: $stacktrace");
   //       //  return Register.withError("$error");
   //    }
-    //final_code//
+  //final_code//
 
-    //Register
-     Future<Map<String,dynamic>> register(
-      String jobseeker_name,
-      String jobseeker_furigana_name,
-      String dob,
-      String phone,
-      String email,
-      String password,
-     ) async {
+  //Register
+  Future<Map<String, dynamic>> register(
+    String jobseeker_name,
+    String jobseeker_furigana_name,
+    String dob,
+    String country_name,
+    String phone,
+    String email,
+    String password,
+  ) async {
     Response response = await _dio.post(registerUrl, data: {
       "name": jobseeker_name,
       "jobseeker_furigana_name": jobseeker_furigana_name,
       "dob": dob,
+      "country_name":country_name,
       "phone": phone,
       "email": email,
       "password": password,
- 
     });
     return response.data;
   }
   //Register
-  
-  //Getcountry 
+
+  //Getcountry
   Future<List<Getcountry>> getcountry() async {
     List<Getcountry> _countrylist = [];
     Response response = await _dio.get(getcountryUrl);
     var body = (response.data);
     try {
       if (response.statusCode == 200) {
-     
-          for (var item in body) {
+        for (var item in body) {
           Getcountry data = new Getcountry.fromJson(item);
           _countrylist.add(data);
         }
@@ -154,34 +155,27 @@ class ApiService {
       }
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
-      }
+    }
   }
   //Getcountry
 
   //citylist
-   Future<List<Getcity>> getcity(String idProvince) async {
-    List<Getcity> _countrylist = [];
+  Future<List<Getcity>> getcity(String idProvince) async {
+    List<Getcity> _citylist = [];
     Response response = await _dio.get(getcityUrl + '$idProvince');
     var body = (response.data);
     try {
       if (response.statusCode == 200) {
-     
-          for (var item in body) {
+        for (var item in body) {
           Getcity data = new Getcity.fromJson(item);
-          _countrylist.add(data);
+          _citylist.add(data);
         }
-        return _countrylist;
+        return _citylist;
       }
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
-      }
+    }
   }
   //citylist
 
-  }
-
-
-  
-
-  
-
+}

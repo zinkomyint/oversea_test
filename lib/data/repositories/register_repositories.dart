@@ -8,13 +8,15 @@ class RegisterRepository {
     String jobseeker_name, 
     String jobseeker_furigana_name,
     String dob,
+    String country_name,
     String phone, 
     String email, 
     String password) =>
       _apiService.register(
         jobseeker_name, 
         jobseeker_furigana_name,
-        dob,  
+        dob,
+        country_name,
         phone, 
         email,
         password);

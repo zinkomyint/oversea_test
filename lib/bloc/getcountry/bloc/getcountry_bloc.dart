@@ -22,11 +22,13 @@ class GetcountryBloc extends Bloc<GetcountryEvent, GetcountryState> {
       try {
             yield GetcountryInitial();
             final country = await _getcountryRepository.getcountry();
-            final city = await _getcountryRepository.getcity(idProvince);
-            yield GetcountrySuccess(country,city);
+            // final city = await _getcountryRepository.getcity(idProvince);
+            // print("city-list - $city");
+            yield GetcountrySuccess(country);
       }on NetworkError {
           yield GetcountryFail("Failed to fetch data. is your device online?");
       }
     }
   }
+  
 }

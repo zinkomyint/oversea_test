@@ -1,3 +1,4 @@
+import 'package:borderlessWorking/bloc/city/bloc/getcity_bloc.dart';
 import 'package:borderlessWorking/bloc/getcountry/bloc/getcountry_bloc.dart';
 import 'package:borderlessWorking/data/api/apiServices.dart';
 import 'package:borderlessWorking/data/api/apis.dart';
@@ -18,16 +19,28 @@ class Getcountries extends StatefulWidget {
 class _GetcountriesState extends State<Getcountries> {
   final GetcountryRepository _getcountryRepository = GetcountryRepository();
   final GetcountryBloc _newsBloc = GetcountryBloc();
-  String dropdownValue,_selectcity;
+  final GetcityBloc _getcityBloc = GetcityBloc();
+  String dropdownValue;
+  String _selectcity;
+  List<dynamic> _dataCity = List();
+
+  // void getcity(String idProvince) async {
+  //   final citeytester = await _getcountryRepository.getcity(idProvince);
+  //   // print("getcity : $idProvince");
+  // }
+  void getcity(String idProvince) async {
+    final test = await _getcountryRepository.getcity(idProvince);
+    setState(() {
+      _dataCity = test;
+    });
+    print("Data City : $test");
+  }
+
   @override
   void initState() {
     _newsBloc.add(Getcountrylist());
+    _selectcity = 'select country';
     super.initState();
-  }
-
-  void getcity(String idProvince) async {
-    final city = await _getcountryRepository.getcity(idProvince);
-    print("getcity : $idProvince");
   }
 
   @override
@@ -67,7 +80,7 @@ class _GetcountriesState extends State<Getcountries> {
             } else if (state is GetcountrySuccess) {
               if (state is GetcountrySuccess) {
                 List<Getcountry> country = state.country;
-                List<Getcity> city = state.city;
+                // List<Getcity> city = state.city;
                 return Column(children: [
                   Container(
                     child: DropdownButton<String>(
@@ -96,39 +109,24 @@ class _GetcountriesState extends State<Getcountries> {
                       }).toList(),
                     ),
                   ),
-              
                   Container(
-                    child:    DropdownButton<String>(
-                         hint: new Text('select city 2'),
-                          value: _selectcity,
-                          icon: Icon(Icons.arrow_downward),
-                          iconSize: 24,
-                          elevation: 16,
-                          style: TextStyle(color: Colors.black),
-                          underline: Container(
-                            height: 2,
-                            color: Colors.black,
-                          ),
-                          onChanged: (String ccity) {
-                            setState(() {
-                              _selectcity = ccity;
-                              print("selected: $ccity");
-                            });
-                          },
-                          items: city.map<DropdownMenuItem<String>>((value) {
-                            return DropdownMenuItem<String>(
-                              value: value.city_name,
-                              child: Text(value.city_name),
-                            );
-                          }).toList(),
-                        ),
+                    child: DropdownButton(
+                      isExpanded: true,
+                      hint: Text("Select City"),
+                      value: _selectcity,
+                      items: _dataCity.map((city) {
+                        return DropdownMenuItem(
+                          child: Text(city.city_name),
+                          value: city.city_name,
+                        );
+                      }).toList(),
+                      onChanged: (city) {
+                        setState(() {
+                          _selectcity = city;
+                        });
+                      },
+                    ),
                   )
-               
-
-                  //  return ListView.builder(
-                  //     itemCount: country.length,
-                  //     itemBuilder: (context, position) => countrylist(country[position], context)
-                  //     );
                 ]);
               }
             } else if (state is GetcountryFail) {

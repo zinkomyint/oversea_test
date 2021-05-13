@@ -12,15 +12,25 @@ class GetcountryInitial extends GetcountryState {
 
 class GetcountrySuccess extends GetcountryState{
   final List<Getcountry> country;
-  final List<Getcity> city;
+  // final List<Getcity> city;
  
-  const GetcountrySuccess(this.country,this.city);
+  const GetcountrySuccess(this.country);
 
   @override
   // ignore: todo
   // TODO: implement props
-  List<Object> get props => [country,city];
+  List<Object> get props => [country];
 }
+// class GetcitySuccess extends GetcountryState{
+//   final List<Getcity> city;
+//   // final List<Getcountry> country;
+//   const GetcitySuccess(this.city);
+
+//   @override
+//   // ignore: todo
+//   // TODO: implement props
+//   List<Object> get props => [city];
+// }
 
 class GetcountryFail extends GetcountryState{
   final String error;

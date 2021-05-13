@@ -29,6 +29,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           event.jobseeker_name,
           event.jobseeker_furigana_name,
           event.dob,
+          event.country_name,
           event.phone,
           event.email,
           event.password,

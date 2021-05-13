@@ -1,3 +1,5 @@
+// import 'dart:convert';
+
 // import 'package:borderlessWorking/bloc/getcountry/bloc/getcountry_bloc.dart';
 // import 'package:borderlessWorking/data/api/apiServices.dart';
 // import 'package:borderlessWorking/data/api/apis.dart';
@@ -20,6 +22,7 @@
 //   final _dio = getDio();
 //   Future _state;
 //   Future _city;
+//   String tester;
 //   final GetcountryBloc _newsBloc = GetcountryBloc();
 //   String dropdownValue;
 //   @override
@@ -30,9 +33,17 @@
 
 //     void getcity(String idProvince)async{
 //       final city = await _getcountryRepository.getcity(idProvince);
-//     // String test = idProvince;
 //     print("getcity : $idProvince");
-//   }
+//    }
+
+//   //    void getProvince() async {
+//   //   final response = await _getcountryRepository.getallcity();
+//   //   var listData = jsonDecode(response.data); //lalu kita decode hasil datanya
+//   //   setState(() {
+//   //     _dataProvince = listData; // dan kita set kedalam variable _dataProvince
+//   //   });
+//   //   print("Data Province : $listData");
+//   // }
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -95,7 +106,7 @@
 //                               onChanged: (String cname) {
 //                                 setState(() {
 //                                   dropdownValue = cname;
-//                                 //  _city = apiService.getcity(dropdownValue);
+//                                  _city = apiService.getcity(cname);
 //                                 });
 //                                  getcity(cname);
 //                               },

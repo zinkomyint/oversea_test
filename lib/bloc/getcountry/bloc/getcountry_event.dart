@@ -8,10 +8,6 @@ abstract class GetcountryEvent extends Equatable {
 
 class Getcountrylist extends GetcountryEvent {
   @override
-  List<Object> get props => null;
-}
-class Getcitylist extends GetcountryEvent {
-  @override
-  List<Object> get props => null;
+  List<Object> get props => [null];
 }
 
