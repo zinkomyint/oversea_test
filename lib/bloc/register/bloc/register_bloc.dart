@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:borderlessWorking/data/model/register.dart';
 import 'package:borderlessWorking/data/repositories/register_repositories.dart';
 import 'package:borderlessWorking/screens/register/success.dart';
 import 'package:equatable/equatable.dart';
@@ -30,6 +29,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           event.jobseeker_furigana_name,
           event.dob,
           event.country_name,
+          event.country_id,
           event.phone,
           event.email,
           event.password,

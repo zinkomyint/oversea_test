@@ -9,6 +9,7 @@ class RegisterRepository {
     String jobseeker_furigana_name,
     String dob,
     String country_name,
+    String country_id,
     String phone, 
     String email, 
     String password) =>
@@ -17,9 +18,12 @@ class RegisterRepository {
         jobseeker_furigana_name,
         dob,
         country_name,
+        country_id,
         phone, 
         email,
         password);
+
+      Future<Map<String,dynamic>> mailcheck( String email ) => _apiService.mailcheck( email );
 }
 
 class NetworkError extends Error {}

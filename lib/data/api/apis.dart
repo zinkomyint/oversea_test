@@ -14,6 +14,7 @@ class Apis {
   static const register = '/jobseeker/register/';
   static const country_list = '/jobseeker/country-list/';
   static const city_list = '/jobseeker/city-list/';
+  static const mailunique = '/jobseeker/mail-unity/';
 }
 
 Dio getDio() {

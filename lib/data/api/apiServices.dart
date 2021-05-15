@@ -21,6 +21,7 @@ class ApiService {
   var registerUrl = mainUrl + Apis.register;
   var getcountryUrl = mainUrl + Apis.country_list;
   var getcityUrl = mainUrl + Apis.city_list;
+  var mailunique = mainUrl + Apis.mailunique;
   final FlutterSecureStorage storage = new FlutterSecureStorage();
   // Dio dio = Dio();
   final _dio = getDio();
@@ -116,6 +117,12 @@ class ApiService {
   //       //  return Register.withError("$error");
   //    }
   //final_code//
+   Future<Map<String, dynamic>> mailcheck(String email) async {
+    Response response = await _dio.post(mailunique, data: {
+      "email": email,
+   });
+    return response.data;
+  }
 
   //Register
   Future<Map<String, dynamic>> register(
@@ -123,6 +130,7 @@ class ApiService {
     String jobseeker_furigana_name,
     String dob,
     String country_name,
+    String country_id,
     String phone,
     String email,
     String password,
@@ -132,6 +140,7 @@ class ApiService {
       "jobseeker_furigana_name": jobseeker_furigana_name,
       "dob": dob,
       "country_name":country_name,
+      "country_id": country_id,
       "phone": phone,
       "email": email,
       "password": password,
