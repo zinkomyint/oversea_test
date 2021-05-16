@@ -5,6 +5,7 @@ import 'package:borderlessWorking/data/model/getcity.dart';
 import 'package:borderlessWorking/data/model/getcountry.dart';
 import 'package:borderlessWorking/data/repositories/getcountry_repositories.dart';
 import 'package:borderlessWorking/data/repositories/register_repositories.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,16 +61,18 @@ class _TestingState extends State<Testing> {
   List<Getcountry> _dataCountry = List();
   List<Getcity> _dataCity = List();
 
-  List<dynamic> _mailunique;
-  void mailcheck(String email) async {
-    final aaa = await _registerRepository.mailcheck(email);
-    check = jsonEncode(aaa);
+  void mailcheck(email) async {
+    final test = await _registerRepository.mailcheck(email);
+    // final msg = test;
+    // check = msg.toString();
+
     //response['body'] is API response
     // var aa = json.decode(test['body']); 
     // setState(() {
-    //    check = aaa;
+    //     final msg = check.response.data;
+    //     error: msg.toString();
     // });
-    print("error_view : $check");
+    print("error_view :$Error()");
   }
  
 
@@ -532,9 +535,9 @@ class _TestingState extends State<Testing> {
                     onChanged: (value) {
                       setState(() {
                         _formKey.currentState.validate();
-                        //  unemail = value;
+                         unemail = value;
                       });
-                      // mailcheck(unemail);
+                      mailcheck(unemail);
                     },
                     validator: (value) {
                       String pattern =
@@ -544,8 +547,8 @@ class _TestingState extends State<Testing> {
                         return "メールアドレスは必須です";
                       } else if (!regExp.hasMatch(value)) {
                         return "メールアドレスの形式が正しくありません";
-                      } else{
-                        return null;
+                      } else if(value == check){
+                        return "fuck";
                       }
                     },
                     autocorrect: false,
