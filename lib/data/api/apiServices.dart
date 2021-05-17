@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:borderlessWorking/data/api/apis.dart';
@@ -117,11 +118,31 @@ class ApiService {
   //       //  return Register.withError("$error");
   //    }
   //final_code//
-   Future<Map<String, dynamic>> mailcheck(String email) async {
-    Response response = await _dio.post(mailunique, data: {
-      "email": email,
-   });
-    return response.data;
+  //  Future<String> mailcheck(String email) async {
+  //   Response response = await _dio.post(mailunique, data: {
+  //     "email": email,
+  //  });
+  //  return response.data;
+  //  }
+
+  Future<String> mailcheck1(String email) async {
+    try{
+      var params = {
+        "email": email,};
+      Response response = await _dio.post(mailunique,
+        data: params,
+      );
+      if (response.statusCode == HttpStatus.ok) {
+        print("200");
+        return null;
+      }
+    } catch (error, stacktrace) {
+      // print("not 200");
+      //print("Exception occured: $error stackTrace: $stacktrace");
+      return "mail exit";
+      // final msg = error.response.data;
+      //  return msg.toString();
+    }
   }
 
   //Register

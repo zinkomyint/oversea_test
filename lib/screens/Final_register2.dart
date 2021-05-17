@@ -9,6 +9,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:http/http.dart' as http;
 
 class Formregister extends StatefulWidget {
   @override
@@ -61,20 +63,34 @@ class _TestingState extends State<Testing> {
   List<Getcountry> _dataCountry = List();
   List<Getcity> _dataCity = List();
 
-  void mailcheck(email) async {
-    final test = await _registerRepository.mailcheck(email);
-    // final msg = test;
-    // check = msg.toString();
-
-    //response['body'] is API response
-    // var aa = json.decode(test['body']); 
-    // setState(() {
-    //     final msg = check.response.data;
-    //     error: msg.toString();
-    // });
-    print("error_view :$Error()");
+  mailcheck1(email) async {
+    // final test = await _registerRepository.mailcheck(email);
+    var params = {
+      "email": email,
+    };
+    final http.Response response = await http.post(
+      'http://192.168.99.207:8000/api/v1/jobseeker/mail-unity/',
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: jsonEncode(params),
+    );
+    print(response.statusCode);
+    if (email != null) {
+      if (response.statusCode != 200) {
+      Scaffold.of(context).showSnackBar(
+      SnackBar(content: Text('Email already exists')));
+      } else {
+        return null;
+      }
+    }
+    // if (response.statusCode != 200) {
+    //   print("mailrepeat");
+    //   return true;r
+    // } else {
+    //   return null;
+    // }
   }
- 
 
   //Getcountry_API
   void getcity(String idProvince) async {
@@ -532,12 +548,13 @@ class _TestingState extends State<Testing> {
                       ),
                     ),
                     controller: _emailController,
+                    // validator: mailcheck1(email),
                     onChanged: (value) {
                       setState(() {
                         _formKey.currentState.validate();
-                         unemail = value;
+                        unemail = value;
                       });
-                      mailcheck(unemail);
+                      mailcheck1(unemail);
                     },
                     validator: (value) {
                       String pattern =
@@ -547,8 +564,12 @@ class _TestingState extends State<Testing> {
                         return "メールアドレスは必須です";
                       } else if (!regExp.hasMatch(value)) {
                         return "メールアドレスの形式が正しくありません";
-                      } else if(value == check){
-                        return "fuck";
+                      } 
+                      else if (mailcheck1(value) != null) {
+                        return 'email already exists';
+                      } 
+                      else {
+                        return null;
                       }
                     },
                     autocorrect: false,

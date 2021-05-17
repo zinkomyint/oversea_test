@@ -23,7 +23,7 @@ class RegisterRepository {
         email,
         password);
 
-      Future<Map<String,dynamic>> mailcheck( String email ) => _apiService.mailcheck( email );
+      Future<String> mailcheck( String email ) => _apiService.mailcheck1( email );
 }
 
 class NetworkError extends Error {}

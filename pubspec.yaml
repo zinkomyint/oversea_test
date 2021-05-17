@@ -46,6 +46,7 @@ dependencies:
   logger: any
   flutter_slidable:
   json_annotation:
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:
